@@ -28,15 +28,38 @@ fmt.Println(add(x,y))
 	
 }
 
-const helloPrefix = "Hello, "
+const (
+	spanish = "Spanish"
+	french = "French"
+	japanese = "Japanese"
 
-func Hello(name string) string {
+	helloPrefix = "Hello, "
+ 	spanishHelloPrefix = "Hola, "
+ 	frenchHelloPrefix = "Bonjour, "
+	japaneseHelloPrefix = "Konnichiwa, "
+)
+
+func Hello(name string, language string) string {
 	if name == "" {
 		name = "World"
 	}
-	return helloPrefix + name
+	return greetingPrefix(language) + name
+}
+
+func greetingPrefix(language string) (prefix string) {
+	switch language {
+	case french:
+		prefix = frenchHelloPrefix
+	case spanish:
+		prefix = spanishHelloPrefix
+	case japanese:
+		prefix = japaneseHelloPrefix
+	default:
+		prefix = helloPrefix
+	}
+	return
 }
 
 func main() {
-	fmt.Println(Hello("world"))
+	fmt.Println(Hello("world", ""))
 }
